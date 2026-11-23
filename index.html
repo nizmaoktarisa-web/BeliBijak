@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeliBijak - Perencanaan Belanja Cerdas</title>
+  
+  <!-- Font Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icon Lucide / Phosphor (Opsional / SVG Inline) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- HEADER ATAS -->
+    <header class="app-header">
+      <h1 id="headerTitle" class="header-title">Beranda</h1>
+      <button class="profile-btn" aria-label="Profil Pengguna">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </button>
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <main class="main-content">
+      
+      <!-- ================= LAYAR 1: BERANDA ================= -->
+      <section id="viewBeranda" class="view-section active">
+        <div class="greeting-section">
+          <h2>Halo, Sarah</h2>
+          <p class="subtitle">Rencana belanja bulan ini</p>
+        </div>
+
+        <!-- Kartu Ringkasan Anggaran -->
+        <div class="card budget-card">
+          <div class="budget-header">
+            <div>
+              <span class="label-caption">SISA ANGGARAN</span>
+              <p class="budget-main-amount" id="homeRemainingBudget">Rp 1.050.000</p>
+            </div>
+            <span class="badge badge-accent">30% Tersisa</span>
+          </div>
+
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 70%;"></div>
+          </div>
+
+          <div class="budget-submetrics">
+            <span>Terpakai: <strong>Rp 2.450.000</strong></span>
+            <span>Total: <strong>Rp 3.500.000</strong></span>
+          </div>
+        </div>
+
+        <!-- Tombol Buka Form Buat Daftar -->
+        <button id="btnOpenCreateList" class="btn btn-primary full-width">
+          <span class="icon-plus">+</span> Buat Daftar Belanja
+        </button>
+
+        <!-- Form Tambah Daftar Belanja (Tutup/Buka) -->
+        <div id="createListForm" class="card form-card hidden">
+          <h3 class="form-title">Buat Daftar Baru</h3>
+          <div class="form-group">
+            <label for="inputListName">Nama Daftar Belanja</label>
+            <input type="text" id="inputListName" placeholder="Misal: Belanja Mingguan Pasar">
+          </div>
+          <div class="form-group">
+            <label for="inputListBudget">Anggaran Rencana (Rp)</label>
+            <input type="number" id="inputListBudget" placeholder="Contoh: 300000">
+          </div>
+          <div id="formValidationError" class="validation-message hidden">
+            Mohon isi nama daftar dan nominal anggaran dengan benar.
+          </div>
+          <div class="form-actions">
+            <button type="button" id="btnCancelList" class="btn btn-secondary">Batal</button>
+            <button type="button" id="btnSaveList" class="btn btn-primary">Simpan Daftar</button>
+          </div>
+        </div>
+
+        <!-- Bagian Daftar Belanja Aktif -->
+        <div class="section-block">
+          <div class="section-header">
+            <h3>Daftar Belanja Aktif</h3>
+            <span id="activeListCount" class="badge-count">2 Daftar</span>
+          </div>
+
+          <div id="activeListsContainer" class="list-container">
+            <div class="card card-item" onclick="navigateTo('viewDaftar')">
+              <div class="card-item-body">
+                <div>
+                  <h4 class="card-item-title">Supermarket Bulanan</h4>
+                  <p class="card-item-sub">7 Barang</p>
+                </div>
+                <div class="card-item-right">
+                  <span class="badge badge-accent">Berjalan</span>
+                  <span class="card-item-price">Rp 500.000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-item" onclick="navigateTo('viewDaftar')">
+              <div class="card-item-body">
+                <div>
+                  <h4 class="card-item-title">Bahan Dapur Segar</h4>
+                  <p class="card-item-sub">5 Barang</p>
+                </div>
+                <div class="card-item-right">
+                  <span class="badge badge-neutral">Siap Belanja</span>
+                  <span class="card-item-price">Rp 200.000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 2: DAFTAR BELANJA ================= -->
+      <section id="viewDaftar" class="view-section">
+        <div class="list-detail-header">
+          <div>
+            <div class="title-with-badge">
+              <h2>Belanja Bulanan Supermarket</h2>
+              <span class="badge badge-accent">Aktif</span>
+            </div>
+            <p class="subtitle">Super Indo Gejayan • Terakhir diubah 10 mnt lalu</p>
+          </div>
+        </div>
+
+        <!-- Ringkasan Keuangan Daftar -->
+        <div class="card summary-panel">
+          <div class="summary-columns">
+            <div class="summary-col">
+              <span class="label-caption">Anggaran</span>
+              <p class="summary-num">Rp 500.000</p>
+            </div>
+            <div class="summary-col">
+              <span class="label-caption">Estimasi Total</span>
+              <p class="summary-num">Rp 371.000</p>
+            </div>
+            <div class="summary-col">
+              <span class="label-caption">Sisa</span>
+              <p class="summary-num highlight-brown">Rp 129.000</p>
+            </div>
+          </div>
+
+          <div class="progress-info-row">
+            <span id="progressText">3 dari 6 barang terbeli (50%)</span>
+            <span class="badge-status-safe">Aman</span>
+          </div>
+          <div class="progress-bar-container">
+            <div id="itemsProgressBar" class="progress-bar-fill" style="width: 50%;"></div>
+          </div>
+        </div>
+
+        <!-- Checklist Barang -->
+        <div class="section-block">
+          <div class="section-header">
+            <h3>DAFTAR BELANJA</h3>
+            <span class="caption-helper">Centang yang sudah diambil</span>
+          </div>
+
+          <div id="shoppingItemsList" class="checklist-card card">
+            <!-- Item 1 -->
+            <label class="item-row purchased">
+              <input type="checkbox" class="item-checkbox" data-price="82000" checked onchange="handleItemToggle(this)">
+              <div class="item-info">
+                <span class="item-name">Beras Premium 5kg</span>
+                <span class="item-desc">1 karung</span>
+              </div>
+              <span class="item-price">Rp 82.000</span>
+            </label>
+
+            <!-- Item 2 -->
+            <label class="item-row purchased">
+              <input type="checkbox" class="item-checkbox" data-price="72000" checked onchange="handleItemToggle(this)">
+              <div class="item-info">
+                <span class="item-name">Minyak Goreng 2L</span>
+                <span class="item-desc">2 pouch</span>
+              </div>
+              <span class="item-price">Rp 72.000</span>
+            </label>
+
+            <!-- Item 3 -->
+            <label class="item-row purchased">
+              <input type="checkbox" class="item-checkbox" data-price="31000" checked onchange="handleItemToggle(this)">
+              <div class="item-info">
+                <span class="item-name">Telur Ayam 1kg</span>
+                <span class="item-desc">1 tray</span>
+              </div>
+              <span class="item-price">Rp 31.000</span>
+            </label>
+
+            <!-- Item 4 -->
+            <label class="item-row">
+              <input type="checkbox" class="item-checkbox" data-price="120000" onchange="handleItemToggle(this)">
+              <div class="item-info">
+                <span class="item-name">Daging Sapi Giling</span>
+                <span class="item-desc">1 kg</span>
+              </div>
+              <span class="item-price">Rp 120.000</span>
+            </label>
+
+            <!-- Item 5 -->
+            <label class="item-row">
+              <input type="checkbox" class="item-checkbox" data-price="28000" onchange="handleItemToggle(this)">
+              <div class="item-info">
+                <span class="item-name">Bawang Merah & Putih</span>
+                <span class="item-desc">500 gr</span>
+              </div>
+              <span class="item-price">Rp 28.000</span>
+            </label>
+
+            <!-- Item 6 -->
+            <label class="item-row">
+              <input type="checkbox" class="item-checkbox" data-price="38000" onchange="handleItemToggle(this)">
+              <div class="item-info">
+                <span class="item-name">Deterjen Bubuk</span>
+                <span class="item-desc">1 bungkus</span>
+              </div>
+              <span class="item-price">Rp 38.000</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Tombol Tambah Barang & Selesaikan Belanja -->
+        <div class="action-buttons-group">
+          <button id="btnTambahBarang" class="btn btn-secondary full-width">
+            + Tambah Barang
+          </button>
+          <button id="btnSelesaikanBelanja" class="btn btn-primary full-width" onclick="navigateTo('viewRiwayat')">
+            Selesaikan Belanja
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 3: RIWAYAT BELANJA ================= -->
+      <section id="viewRiwayat" class="view-section">
+        <div class="greeting-section">
+          <h2>Riwayat Belanja</h2>
+          <p class="subtitle">Belanjaan yang telah selesai dicatat</p>
+        </div>
+
+        <div class="list-container">
+          <div class="card card-item">
+            <div class="card-item-body">
+              <div>
+                <h4 class="card-item-title">Belanja Mingguan Sayur</h4>
+                <p class="card-item-sub">14 November 2026</p>
+              </div>
+              <div class="card-item-right">
+                <span class="badge badge-neutral">Selesai</span>
+                <span class="card-item-price">Rp 175.000</span>
+                <span class="caption-budget">Anggaran: Rp 200.000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-item">
+            <div class="card-item-body">
+              <div>
+                <h4 class="card-item-title">Kebutuhan Pokok Awal Bulan</h4>
+                <p class="card-item-sub">02 November 2026</p>
+              </div>
+              <div class="card-item-right">
+                <span class="badge badge-neutral">Selesai</span>
+                <span class="card-item-price">Rp 480.000</span>
+                <span class="caption-budget">Anggaran: Rp 500.000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-item">
+            <div class="card-item-body">
+              <div>
+                <h4 class="card-item-title">Belanja Buah & Vitamin</h4>
+                <p class="card-item-sub">28 Oktober 2026</p>
+              </div>
+              <div class="card-item-right">
+                <span class="badge badge-neutral">Selesai</span>
+                <span class="card-item-price">Rp 120.000</span>
+                <span class="caption-budget">Anggaran: Rp 150.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- TAB NAVIGASI BAWAH (3 MENU) -->
+    <nav class="bottom-nav">
+      <button class="nav-tab active" data-target="viewBeranda" onclick="navigateTo('viewBeranda')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Beranda</span>
+      </button>
+
+      <button class="nav-tab" data-target="viewDaftar" onclick="navigateTo('viewDaftar')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 11l3 3L22 4"></path>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+        </svg>
+        <span>Daftar</span>
+      </button>
+
+      <button class="nav-tab" data-target="viewRiwayat" onclick="navigateTo('viewRiwayat')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 14 14"></polyline>
+        </svg>
+        <span>Riwayat</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

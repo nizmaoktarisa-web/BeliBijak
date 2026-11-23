@@ -1,0 +1,503 @@
+/* ==========================================================
+   PALET WARNA RESMI:
+   - Warm White : #FAF8F4 (Latar Belakang Dominan)
+   - Dusty Blue : #DCE6ED (Tombol Primer, Status Aktif)
+   - Soft Brown : #E8D5C4 (Aksen Lembut, Tombol Sekunder)
+   - Neutral Gelap: #2D2A26 & #6E685F (Teks Ramah Mata)
+   ========================================================== */
+
+:root {
+  --bg-warm-white: #FAF8F4;
+  --primary-dusty-blue: #DCE6ED;
+  --accent-soft-brown: #E8D5C4;
+  --text-dark: #2D2A26;
+  --text-muted: #6E685F;
+  --card-border: #EFE9E0;
+  --card-bg: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: #E8E5DF; /* background luar pembungkus mobile */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: var(--text-dark);
+}
+
+/* Bingkai Mobile App (390px - 430px) */
+.app-container {
+  width: 100%;
+  max-width: 412px;
+  min-height: 100vh;
+  background-color: var(--bg-warm-white);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+.app-header {
+  padding: 18px 20px;
+  background-color: var(--bg-warm-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.profile-btn {
+  background: #4A5568;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Konten Utama */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: 90px; /* ruang untuk bottom nav */
+  overflow-y: auto;
+}
+
+/* Navigasi Layar (Tab Switcher) */
+.view-section {
+  display: none;
+}
+
+.view-section.active {
+  display: block;
+}
+
+/* Tipografi & Judul */
+.greeting-section {
+  margin-bottom: 18px;
+}
+
+.greeting-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.title-with-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-with-badge h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Kartu Bersih & Minimalis */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.budget-card {
+  padding: 18px;
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.label-caption {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.budget-main-amount {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-top: 2px;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background-color: #ECE7DF;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 12px 0 10px 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #B5CBD8;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.budget-submetrics {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Lencana (Badges) */
+.badge {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.badge-accent {
+  background-color: var(--accent-soft-brown);
+  color: #4A3B32;
+}
+
+.badge-neutral {
+  background-color: #EFEAE2;
+  color: var(--text-muted);
+}
+
+.badge-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.badge-status-safe {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Tombol */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn:active {
+  opacity: 0.85;
+}
+
+.btn-primary {
+  background-color: var(--primary-dusty-blue);
+  color: var(--text-dark);
+}
+
+.btn-secondary {
+  background-color: var(--accent-soft-brown);
+  color: var(--text-dark);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.action-buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Bagian Daftar & List Item */
+.section-block {
+  margin-top: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-header h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.caption-helper {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-item {
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.card-item:hover {
+  transform: translateY(-1px);
+}
+
+.card-item-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.card-item-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.card-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.card-item-price {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.caption-budget {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Form Buat Daftar */
+.form-card {
+  border: 1.5px solid var(--accent-soft-brown);
+  margin-top: 14px;
+}
+
+.form-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-muted);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #B5CBD8;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.form-actions .btn {
+  flex: 1;
+}
+
+.validation-message {
+  font-size: 0.75rem;
+  color: #B85D5D;
+  margin-top: 4px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Panel Rincian Belanja (Layar 2) */
+.summary-panel {
+  padding: 14px 16px;
+}
+
+.summary-columns {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.summary-num {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.highlight-brown {
+  color: #6E533F;
+}
+
+.progress-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Checklist Barang */
+.checklist-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--card-border);
+  cursor: pointer;
+  user-select: none;
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+.item-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 14px;
+  accent-color: #8DA8BD;
+  cursor: pointer;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.item-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.item-price {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* Coret barang yang sudah dibeli */
+.item-row.purchased .item-name {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* Navigasi Bawah (Bottom Navigation) */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  background-color: var(--bg-warm-white);
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-tab {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px 16px;
+  border-radius: 12px;
+}
+
+.nav-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-tab.active {
+  background-color: var(--primary-dusty-blue);
+  color: var(--text-dark);
+}
+
